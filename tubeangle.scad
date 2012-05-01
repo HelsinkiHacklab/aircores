@@ -68,7 +68,7 @@ module print_tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2
     }
     
 }
-print_tube_angle_fitting();
+print_tube_angle_fitting(sleeve=4);
 
 
 module tube_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2)
