@@ -71,10 +71,18 @@ module print_tube_angle_fitting(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickne
         }
     }
 }
-print_tube_angle_fitting(sleeve=4);
+//print_tube_angle_fitting(sleeve=4);
 
 module print_tube_angle_fitting_otherway(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, tan_angle=90)
 {
+    union()
+    {
+        tube_angle_fitting(inner_d, outer_d, sleeve, wall_thickness, tan_angle);
+        translate([outer_d+wall_thickness/2, -2, 0])
+        {
+            cube([sleeve+wall_thickness-0.1, 4, sleeve+wall_thickness]);
+        }
+    }
 }
 print_tube_angle_fitting_otherway();
 
