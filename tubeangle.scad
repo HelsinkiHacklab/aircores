@@ -1,22 +1,22 @@
-module tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_angle=90)
+module tube_angle_fitting(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, tan_angle=90)
 {
     union()
     {
         tube_fitting(inner_d, outer_d, sleeve, wall_thickness);
         // TODO: Calculate the offsets from the angle (now suppose 90degrees...)
-        translate([outer_d+wall_thickness,0,sleeve+wall_thickness-0.1])
+        translate([outer_d+wall_thickness/2,0,sleeve+wall_thickness-0.1])
         {
             rotate([90,0,0])
             {
                 // Looks nicer
-                donut_tube(inner_d,outer_d,tan_angle, outer_d+(outer_d-inner_d));
+                #donut_tube(inner_d,outer_d,tan_angle, outer_d+(outer_d-inner_d));
 
                 // Better for printing on FDM
                 //donut_tube(inner_d,outer_d+wall_thickness-0.1,tan_angle, outer_d+(outer_d-inner_d));
             }
         }
         // TODO: Calculate the offsets from the angle (now suppose 90degrees...)
-        translate([outer_d*2-0.1,0,outer_d*2-0.1])
+        translate([outer_d*2+wall_thickness*1.5-0.1,0,outer_d*2+sleeve-wall_thickness/2-0.1])
         {
             rotate([0,-tan_angle,0])
             {
@@ -26,8 +26,9 @@ module tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_
     }
 
 }
+tube_angle_fitting();
 
-module print_tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_angle=90)
+module print_tube_angle_fitting(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, tan_angle=90)
 {
     angle_d = outer_d+(outer_d-inner_d);
     // Tube fitting rotate sideways
@@ -68,7 +69,7 @@ module print_tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2
     }
     
 }
-print_tube_angle_fitting(sleeve=4);
+//print_tube_angle_fitting(sleeve=4);
 
 
 module tube_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2)
