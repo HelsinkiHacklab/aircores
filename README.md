@@ -1,0 +1,1 @@
+3D parts for building a machine for winding air-core coils
