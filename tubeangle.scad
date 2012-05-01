@@ -9,10 +9,10 @@ module tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_
             rotate([90,0,0])
             {
                 // Looks nicer
-                //donut_tube(inner_d,outer_d,tan_angle, outer_d+(outer_d-inner_d));
+                donut_tube(inner_d,outer_d,tan_angle, outer_d+(outer_d-inner_d));
 
                 // Better for printing on FDM
-                donut_tube(inner_d,outer_d+wall_thickness-0.1,tan_angle, outer_d+(outer_d-inner_d));
+                //donut_tube(inner_d,outer_d+wall_thickness-0.1,tan_angle, outer_d+(outer_d-inner_d));
             }
         }
         // TODO: Calculate the offsets from the angle (now suppose 90degrees...)
@@ -26,7 +26,49 @@ module tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_
     }
 
 }
-tube_angle_fitting();
+
+module print_tube_angle_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2, tan_angle=90)
+{
+    angle_d = outer_d+(outer_d-inner_d);
+    // Tube fitting rotate sideways
+    translate([0,0,outer_d+wall_thickness])
+    {
+        rotate([90,0,0])
+        {
+            tube_angle_fitting(inner_d, outer_d, sleeve, wall_thickness, tan_angle);
+        }
+    }
+    // Support
+    translate([angle_d,-(sleeve+wall_thickness-0.1),0])
+    {
+        rotate([0,0,90])
+        {
+            // 2d arc extruded up
+            #linear_extrude(height=wall_thickness+0.1, center=false, convexity=100)
+            {
+                intersection()
+                {
+                    // Full circle
+                    difference()
+                    {
+                        circle(r=angle_d+wall_thickness/2);
+                        circle(r=angle_d-wall_thickness/2);
+                    }
+                    // right-angled triagle
+                    translate([0,angle_d+outer_d,0])
+                    {
+                        mirror([1,1,0])
+                        {
+                            polygon(points=[[0,0],[angle_d+outer_d,0],[0,tan(tan_angle) * angle_d+outer_d]], paths=[[0,1,2]]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+print_tube_angle_fitting();
 
 
 module tube_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2)
