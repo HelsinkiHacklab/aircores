@@ -31,46 +31,52 @@ module tube_angle_fitting(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, 
 module print_tube_angle_fitting(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, tan_angle=90)
 {
     angle_d = outer_d+(outer_d-inner_d);
-    // Tube fitting rotate sideways
-    translate([0,0,outer_d+wall_thickness])
+    union()
     {
-        rotate([90,0,0])
+        // Tube fitting rotate sideways
+        translate([0,0,outer_d+wall_thickness])
         {
-            tube_angle_fitting(inner_d, outer_d, sleeve, wall_thickness, tan_angle);
-        }
-    }
-    // Support
-    translate([angle_d,-(sleeve+wall_thickness-0.1),0])
-    {
-        rotate([0,0,90])
-        {
-            // 2d arc extruded up
-            #linear_extrude(height=wall_thickness+0.1, center=false, convexity=100)
+            rotate([90,0,0])
             {
-                intersection()
+                tube_angle_fitting(inner_d, outer_d, sleeve, wall_thickness, tan_angle);
+            }
+        }
+        // Support
+        translate([angle_d,-(sleeve+wall_thickness-0.1),0])
+        {
+            rotate([0,0,90])
+            {
+                // 2d arc extruded up
+                #linear_extrude(height=wall_thickness+0.1, center=false, convexity=100)
                 {
-                    // Full circle
-                    difference()
+                    intersection()
                     {
-                        circle(r=angle_d+wall_thickness/2);
-                        circle(r=angle_d-wall_thickness/2);
-                    }
-                    // right-angled triagle
-                    translate([0,angle_d+outer_d,0])
-                    {
-                        mirror([1,1,0])
+                        // Full circle
+                        difference()
                         {
-                            polygon(points=[[0,0],[angle_d+outer_d,0],[0,tan(tan_angle) * angle_d+outer_d]], paths=[[0,1,2]]);
+                            circle(r=angle_d+wall_thickness/2);
+                            circle(r=angle_d-wall_thickness/2);
+                        }
+                        // right-angled triagle
+                        translate([0,angle_d+outer_d,0])
+                        {
+                            mirror([1,1,0])
+                            {
+                                polygon(points=[[0,0],[angle_d+outer_d,0],[0,tan(tan_angle) * angle_d+outer_d]], paths=[[0,1,2]]);
+                            }
                         }
                     }
                 }
             }
         }
     }
-    
 }
 print_tube_angle_fitting(sleeve=4);
 
+module print_tube_angle_fitting_otherway(inner_d=6/2, outer_d=8/2, sleeve=4, wall_thickness=2, tan_angle=90)
+{
+}
+print_tube_angle_fitting_otherway();
 
 module tube_fitting(inner_d=6, outer_d=8, sleeve=4, wall_thickness=2)
 {
