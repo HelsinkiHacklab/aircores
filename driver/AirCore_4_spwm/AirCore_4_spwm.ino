@@ -1,4 +1,7 @@
 
+#define I2C_SLAVE_ADDR 0x4 // the 7-bit address (remember to change this)
+#include <Wire.h>
+
 
 #include "Sin4096.h"
 
@@ -14,7 +17,7 @@ const uint32_t   MillisecondInTicks = 16000;
 const uint32_t   SecondInTicks = 16000000;
 const uint8_t    pwmScaler = 9;                  // 0..8?
 
-const bool       demo = true;                    // Demo mode
+const bool       demo = false;                    // Demo mode
 
 
 volatile uint32_t tick_counter_overflow = 0;     // Incremented 244,140625 times per second
@@ -40,6 +43,8 @@ inline uint32_t getTickCount() {
 
  
 void setup() {                
+
+
 
   pinMode(13, OUTPUT);     // Status LED
   
@@ -68,13 +73,29 @@ void setup() {
     pinMode(meterPinX[i], OUTPUT);
     pinMode(meterPinY[i], OUTPUT);
   }    
+
+
+  Wire.begin(I2C_SLAVE_ADDR);                // join i2c bus with address #I2C_SLAVE_ADDR
+  Wire.onReceive(receiveEvent); // register event
+  // Enable the pull-ups
+  digitalWrite(A4, HIGH);
+  digitalWrite(A5, HIGH);
  
   // Status ok
   digitalWrite(13, HIGH);
 }
 
 
-
+void receiveEvent(int howMany)
+{
+    byte reg_addr = Wire.read();
+    byte max_reg = reg_addr + howMany - 1;
+    
+    for (byte i = reg_addr; i < max_reg; i++)
+    {
+        meterValue[i] = Wire.read();
+    }
+}
 
 
 
