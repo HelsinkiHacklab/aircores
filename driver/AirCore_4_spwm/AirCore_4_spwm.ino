@@ -15,9 +15,9 @@ volatile uint8_t meterValue[MotorCount] = { 0 };      // angle = 0..255
 const uint32_t   MicrosecondInTicks = 16;
 const uint32_t   MillisecondInTicks = 16000;
 const uint32_t   SecondInTicks = 16000000;
-const uint8_t    pwmScaler = 9;                  // 0..8?
+const uint8_t    pwmScaler = 8;                  // 0..8?
 
-const bool       demo = false;                    // Demo mode
+const bool       demo = true;                    // Demo mode
 
 
 volatile uint32_t tick_counter_overflow = 0;     // Incremented 244,140625 times per second
@@ -112,7 +112,7 @@ void loop() {
     uint32_t position = time / (MillisecondInTicks*4);    
     
     for (uint8_t i = 0; i < MotorCount; ++i) {
-        meterValue[i] = position*4; //(i + 3);
+        meterValue[i] = position; //(i + 3);
     }
   }
 
