@@ -961,7 +961,7 @@ W = angled&lt;p&gt;
 <instance part="J1" gate="G$1" x="66.04" y="106.68"/>
 <instance part="GND5" gate="1" x="76.2" y="101.6"/>
 <instance part="P+5" gate="1" x="76.2" y="111.76"/>
-<instance part="SV1" gate="1" x="187.96" y="78.74" rot="R180"/>
+<instance part="SV1" gate="1" x="193.04" y="78.74" rot="R180"/>
 <instance part="SV2" gate="1" x="35.56" y="45.72" rot="R90"/>
 <instance part="P+6" gate="1" x="40.64" y="55.88"/>
 <instance part="GND6" gate="1" x="33.02" y="55.88" rot="R180"/>
@@ -1110,28 +1110,32 @@ W = angled&lt;p&gt;
 <wire x1="38.1" y1="53.34" x2="38.1" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$8" class="0">
+<net name="OUT4" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="OUT4"/>
 <pinref part="SV1" gate="1" pin="1"/>
+<wire x1="185.42" y1="83.82" x2="180.34" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$9" class="0">
+<net name="OUT3" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="OUT3"/>
 <pinref part="SV1" gate="1" pin="2"/>
+<wire x1="185.42" y1="81.28" x2="180.34" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$10" class="0">
+<net name="OUT1" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="OUT1"/>
 <pinref part="SV1" gate="1" pin="3"/>
+<wire x1="185.42" y1="78.74" x2="180.34" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$11" class="0">
+<net name="OUT2" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="OUT2"/>
 <pinref part="SV1" gate="1" pin="4"/>
+<wire x1="185.42" y1="76.2" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
