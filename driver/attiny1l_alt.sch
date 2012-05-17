@@ -1070,7 +1070,7 @@ Source:</description>
 <junction x="60.96" y="68.58"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="RESET-" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB5/PCINT5/!RESET!/ADC0/DW"/>
 <pinref part="J1" gate="G$1" pin="5"/>
