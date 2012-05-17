@@ -985,7 +985,7 @@ Source:</description>
 <pinref part="IC4" gate="G$1" pin="IN4"/>
 </segment>
 </net>
-<net name="IN1" class="0">
+<net name="IN1/MISO" class="0">
 <segment>
 <pinref part="IC3" gate="A" pin="I0"/>
 <pinref part="IC3" gate="A" pin="I1"/>
