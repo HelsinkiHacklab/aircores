@@ -1668,20 +1668,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
-<part name="PMOSI" library="testpad" deviceset="TP" device="TP10R"/>
-<part name="PRESET" library="testpad" deviceset="TP" device="TP10R"/>
-<part name="PSCK" library="testpad" deviceset="TP" device="TP10R">
-<attribute name="TP_SIGNAL_NAME" value=""/>
-</part>
-<part name="PMISO" library="testpad" deviceset="TP" device="TP10R">
-<attribute name="TP_SIGNAL_NAME" value=""/>
-</part>
-<part name="PGND" library="testpad" deviceset="TP" device="TP10R">
-<attribute name="TP_SIGNAL_NAME" value=""/>
-</part>
-<part name="P5V" library="testpad" deviceset="TP" device="TP10R">
-<attribute name="TP_SIGNAL_NAME" value=""/>
-</part>
+<part name="PMOSI" library="testpad" deviceset="TP" device="TP12R"/>
+<part name="PMISO" library="testpad" deviceset="TP" device="TP12R"/>
+<part name="PSCK" library="testpad" deviceset="TP" device="TP12R"/>
+<part name="PRESET" library="testpad" deviceset="TP" device="TP12R"/>
+<part name="PGND" library="testpad" deviceset="TP" device="TP12R"/>
+<part name="P5V" library="testpad" deviceset="TP" device="TP12R"/>
 </parts>
 <sheets>
 <sheet>
@@ -1696,12 +1688,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="JP1" gate="G$1" x="76.2" y="53.34"/>
 <instance part="P+1" gate="1" x="86.36" y="53.34" rot="R270"/>
 <instance part="GND1" gate="1" x="83.82" y="58.42" rot="R180"/>
-<instance part="PMOSI" gate="G$1" x="86.36" y="93.98" rot="R270"/>
-<instance part="PRESET" gate="G$1" x="60.96" y="93.98" rot="R270"/>
-<instance part="PSCK" gate="G$1" x="58.42" y="76.2" rot="R270"/>
-<instance part="PMISO" gate="G$1" x="50.8" y="99.06" rot="R90"/>
-<instance part="PGND" gate="G$1" x="86.36" y="55.88" rot="R270"/>
-<instance part="P5V" gate="G$1" x="83.82" y="50.8" rot="R180"/>
+<instance part="PMOSI" gate="G$1" x="86.36" y="86.36" rot="R270"/>
+<instance part="PMISO" gate="G$1" x="50.8" y="93.98" rot="R90"/>
+<instance part="PSCK" gate="G$1" x="48.26" y="73.66" rot="R90"/>
+<instance part="PRESET" gate="G$1" x="60.96" y="86.36" rot="R270"/>
+<instance part="PGND" gate="G$1" x="48.26" y="83.82" rot="R90"/>
+<instance part="P5V" gate="G$1" x="48.26" y="66.04" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -1711,10 +1703,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="50.8" y1="71.12" x2="53.34" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="1"/>
 <wire x1="58.42" y1="109.22" x2="53.34" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="109.22" x2="53.34" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="109.22" x2="53.34" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="PMISO" gate="G$1" pin="TP"/>
-<wire x1="53.34" y1="99.06" x2="53.34" y2="71.12" width="0.1524" layer="91"/>
-<junction x="53.34" y="99.06"/>
+<wire x1="53.34" y1="93.98" x2="53.34" y2="71.12" width="0.1524" layer="91"/>
+<junction x="53.34" y="93.98"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -1725,7 +1717,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <pinref part="JP1" gate="G$1" pin="2"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<junction x="83.82" y="55.88"/>
+</segment>
+<segment>
+<pinref part="GND3" gate="1" pin="GND"/>
 <pinref part="PGND" gate="G$1" pin="TP"/>
 </segment>
 </net>
@@ -1737,40 +1731,40 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <pinref part="JP1" gate="G$1" pin="1"/>
 <pinref part="P+1" gate="1" pin="+5V"/>
-<junction x="83.82" y="53.34"/>
+</segment>
+<segment>
+<pinref part="P+4" gate="1" pin="+5V"/>
 <pinref part="P5V" gate="G$1" pin="TP"/>
 </segment>
 </net>
 <net name="SDA/MOSI" class="0">
 <segment>
 <wire x1="50.8" y1="68.58" x2="83.82" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="68.58" x2="83.82" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="68.58" x2="83.82" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="4"/>
-<wire x1="83.82" y1="93.98" x2="83.82" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="86.36" x2="83.82" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="106.68" x2="76.2" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="PMOSI" gate="G$1" pin="TP"/>
-<junction x="83.82" y="93.98"/>
+<junction x="83.82" y="86.36"/>
 </segment>
 </net>
 <net name="RESET-" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="5"/>
 <wire x1="50.8" y1="81.28" x2="58.42" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="81.28" x2="58.42" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="81.28" x2="58.42" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="86.36" x2="58.42" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="PRESET" gate="G$1" pin="TP"/>
-<wire x1="58.42" y1="93.98" x2="58.42" y2="104.14" width="0.1524" layer="91"/>
-<junction x="58.42" y="93.98"/>
+<junction x="58.42" y="86.36"/>
 </segment>
 </net>
 <net name="SCL/SCK" class="0">
 <segment>
 <wire x1="50.8" y1="73.66" x2="55.88" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="3"/>
-<wire x1="55.88" y1="73.66" x2="55.88" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="76.2" x2="55.88" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="73.66" x2="55.88" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="106.68" x2="58.42" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="PSCK" gate="G$1" pin="TP"/>
-<junction x="55.88" y="76.2"/>
 </segment>
 </net>
 </nets>
