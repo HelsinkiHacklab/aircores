@@ -2,6 +2,11 @@
 
 3D models for coilforms, code and circuit designs for driving them
 
+Here's a video of the first prototype in action: [normal speed][1] and [420fps][2]
+
+[1]: http://www.youtube.com/watch?v=vhqzZveLjwU
+[2]: http://www.youtube.com/watch?v=AHGWKIlYg_o
+
 ## spooler
 
 3D parts for building a machine for winding air-core coils
