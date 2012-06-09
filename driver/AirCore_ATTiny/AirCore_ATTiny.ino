@@ -20,6 +20,7 @@ volatile uint8_t i2c_regs[] =
   128, // angle
   0, // offset (will be stored to EEPROM after wards)
   I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM on next device start this will be the new address
+  //TODO: make the PWM scaler configurable with I2C register ? 
 };
 
 
@@ -35,15 +36,15 @@ void setup()
      // TODO: Read the configuration registers from EEPROM
 
 
-    // Enable I2C Slave, TODO
+    // Enable I2C Slave
     TinyWireS.begin(i2c_regs[2]);
     /**
-     * Enabling internal pull-ups this way does not work    
+     * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
     digitalWrite(0, HIGH);
     digitalWrite(2, HIGH);
      */
      
-
+    // This is here just to test bit-banging
     digitalWrite(3, HIGH);
     
     // Init to default angle
@@ -94,7 +95,7 @@ void set_pwms(byte angle)
 
 void loop()
 {
-    // Poor-mans event handling (tinywire lib does not yet trigger the event right away)
+    // Poor-mans event handling (tinywire lib does not yet trigger the event right away), though I still wonder if we can still get two triggers during one I2C transaction (which will mess things up)
     uint8_t i2c_available = TinyWireS.available();
     if (i2c_available > 1)
     {
