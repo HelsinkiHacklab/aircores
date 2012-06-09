@@ -15,9 +15,9 @@ volatile uint8_t meterValue[MotorCount] = { 0 };      // angle = 0..255
 const uint32_t   MicrosecondInTicks = 16;
 const uint32_t   MillisecondInTicks = 16000;
 const uint32_t   SecondInTicks = 16000000;
-const uint8_t    pwmScaler = 8;                  // 0..8?
+const uint8_t    pwmPreScaler = 8;                  // 0..8?
 
-const bool       demo = true;                    // Demo mode
+volatile bool       demo = true;                    // Demo mode
 
 
 volatile uint32_t tick_counter_overflow = 0;     // Incremented 244,140625 times per second
@@ -100,6 +100,7 @@ void receiveEvent(int howMany)
     {
         meterValue[i] = Wire.read();
     }
+    demo = false;
 }
 
 
@@ -110,7 +111,7 @@ void loop() {
 
   
   
-  uint8_t  pwmTime = uint8_t((time >> pwmScaler) & 0xff);      //  0 = 62.5 kHz, 7 = 488 Hz      
+  uint8_t  pwmTime = uint8_t((time >> pwmPreScaler) & 0xff);      //  0 = 62.5 kHz, 7 = 488 Hz      
 
   // fill dummy values
   if (demo) {  
