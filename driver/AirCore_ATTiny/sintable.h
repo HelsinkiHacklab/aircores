@@ -1,5 +1,8 @@
 #include <avr/pgmspace.h>
 
+/** 
+ * We get truly weird compile erors if this table is bigger than 3354 values... (using full 4k table would make things a lot simpler...)
+ */
 //prog_uchar sinq11024Table[3354] PROGMEM = {};
 prog_uchar sinq11024Table[1024] PROGMEM =
 {
