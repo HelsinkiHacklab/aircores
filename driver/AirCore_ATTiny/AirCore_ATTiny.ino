@@ -35,20 +35,6 @@ void setup()
 
      // TODO: Read the configuration registers from EEPROM
 
-
-    // Enable I2C Slave
-    TinyWireS.begin(i2c_regs[2]);
-    /**
-     * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
-    digitalWrite(0, HIGH);
-    digitalWrite(2, HIGH);
-     */
-     
-     /*
-    // This is here just to test bit-banging
-    digitalWrite(3, HIGH);
-    */
-
     // Iinitialize fast PWM
     cli();
       // Initialize PLL clock as PWM source
@@ -61,7 +47,7 @@ void setup()
       // Initialize timer1 for PWM
       TCCR1 |= (1<<PWM1A); // Enable OCR1A as PWM 
       GTCCR |= (1<<PWM1B); // Enable OCR1B as PWM
-      TCCR1 = (TCCR1 & B11110000) | B0001; // Timer1 prescaler bits
+      TCCR1 = (TCCR1 & B11110000) | B0100; // Timer1 prescaler bits
       // Set the PWM output pins and modes
       TCCR1 = (TCCR1 & B11001111) | B10 << 4; // OC1A (soic pin 6) as PWM output
       GTCCR = (GTCCR & B11001111) | B01 << 4; // OC1B (soic pin 1) as PWM output and pin 3 as complement
@@ -73,8 +59,16 @@ void setup()
       TCNT1 = 0x0;
     sei();
     
+    // Enable I2C Slave
+    TinyWireS.begin(i2c_regs[2]);
+
     // Init to default angle
     set_pwms(i2c_regs[0] + i2c_regs[1]);
+    /**
+     * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
+    digitalWrite(0, HIGH);
+    digitalWrite(2, HIGH);
+     */
 }
 
 void receiveEvent(uint8_t howMany)
@@ -117,15 +111,12 @@ void receiveEvent(uint8_t howMany)
 void set_pwms(byte angle)
 {
     cli();
-      /*
-      OCR1A = angle+32;
+      OCR1A = angle;
       OCR1B = angle+64;
-      */
-      OCR1A = 100;
-      OCR1B = 100;
     sei();
 }
 
+byte i;
 void loop()
 {
     // Poor-mans event handling (tinywire lib does not yet trigger the event right away), though I still wonder if we can still get two triggers during one I2C transaction (which will mess things up)
@@ -139,5 +130,11 @@ void loop()
         // TODO: Store the offset etc configuration registers to EEPROM
         write_eeprom = false;
     }
+    
+    // Roll the pwm
+    set_pwms(i);
+    delay(8000);
+    i++;
+    
 }
 
