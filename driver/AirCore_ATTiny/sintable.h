@@ -41,7 +41,7 @@ prog_uchar sinq11024Table[1024] PROGMEM =
 };
 
 inline uint8_t sine4096(uint16_t val) { 
-  val = val & 0xfff;    // 0..4096    
+  val = val & 0x3ff;    // 0..4096    
   if (val < 1024) {
     return pgm_read_byte_near(sinq11024Table + val);
   } else if (val < 2048) {
