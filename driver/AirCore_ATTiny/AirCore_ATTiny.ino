@@ -17,7 +17,7 @@ arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3
 
 volatile uint8_t i2c_regs[] =
 { 
-  128, // angle
+  64, // angle
   0, // offset (will be stored to EEPROM after wards)
   I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM on next device start this will be the new address
   //TODO: make the PWM scaler configurable with I2C register ? 
@@ -59,7 +59,6 @@ void setup()
       */
       
       // Initialize timer1 for PWM
-      TCCR1 |= (1<<CTC1); // Clear counter on compare match
       TCCR1 |= (1<<PWM1A); // Enable OCR1A as PWM 
       GTCCR |= (1<<PWM1B); // Enable OCR1B as PWM
       TCCR1 = (TCCR1 & B11110000) | B0001; // Timer1 prescaler bits
@@ -67,7 +66,11 @@ void setup()
       TCCR1 = (TCCR1 & B11001111) | B10 << 4; // OC1A (soic pin 6) as PWM output
       GTCCR = (GTCCR & B11001111) | B01 << 4; // OC1B (soic pin 1) as PWM output and pin 3 as complement
       // Disable Timer1 interrupts (we use only the HW PWM in this timer)
-      TIMSK = (TIMSK & B10011011) | 0x0; 
+      TIMSK = (TIMSK & B10011011) | 0x0;
+      // Set full PWM resolution
+      OCR1C = 0xff;
+      // And initialize the clock
+      TCNT1 = 0x0;
     sei();
     
     // Init to default angle
@@ -76,6 +79,7 @@ void setup()
 
 void receiveEvent(uint8_t howMany)
 {
+    return;
     if (howMany < 2)
     {
         // We're only interested when we know we can suppose the first byte is register address
@@ -113,7 +117,7 @@ void receiveEvent(uint8_t howMany)
 void set_pwms(byte angle)
 {
     cli();
-      OCR1A = angle;
+      OCR1A = angle+32;
       OCR1B = angle+64;
     sei();
 }
