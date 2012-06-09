@@ -40,10 +40,10 @@ inline uint8_t sine4096(uint16_t val) {
   if (val < 1024) {
     return pgm_read_byte_near(sinq11024Table + val);
   } else if (val < 2048) {
-    return pgm_read_byte_near(sinq11024Table + 1024 - val);
+    return pgm_read_byte_near(sinq11024Table + (1024 - (val - 1024)));
   } else if (val < 3072) {
     return 255 - pgm_read_byte_near(sinq11024Table + (val - 2048));
   } else {
-    return 255 - pgm_read_byte_near(sinq11024Table + 1024 - (val - 3072));
+    return 255 - pgm_read_byte_near(sinq11024Table + (1024 - (val - 3072)));
   }
 }

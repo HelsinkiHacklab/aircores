@@ -18,7 +18,7 @@ arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3
 
 volatile uint8_t i2c_regs[] =
 { 
-  64, // angle
+  0, // angle
   0, // offset (will be stored to EEPROM after wards)
   I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM on next device start this will be the new address
   //TODO: make the PWM scaler configurable with I2C register ? 
@@ -111,9 +111,11 @@ void receiveEvent(uint8_t howMany)
 
 void set_pwms(byte angle)
 {
+    byte sine = sine4096(angle<<4);
+    byte cosine = sine4096((angle+64)<<4);
     cli();
-      OCR1A = angle;
-      OCR1B = angle+64;
+      OCR1A = sine;
+      OCR1B = cosine;
     sei();
 }
 
