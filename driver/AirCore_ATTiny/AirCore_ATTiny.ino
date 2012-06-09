@@ -15,7 +15,8 @@ arduino pin 3 = not(OC1B) = PORTB <- _BV(3) = SOIC pin 2
 arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3
  */
 
-volatile uint8_t i2c_regs[] = { 
+volatile uint8_t i2c_regs[] =
+{ 
   128, // angle
   0, // offset (will be stored to EEPROM after wards)
   I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM on next device start this will be the new address
@@ -44,6 +45,9 @@ void setup()
      
 
     digitalWrite(3, HIGH);
+    
+    // Init to default angle
+    set_pwms(i2c_regs[0]);
 }
 
 void receiveEvent(uint8_t howMany)
