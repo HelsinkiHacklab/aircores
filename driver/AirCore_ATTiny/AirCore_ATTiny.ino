@@ -117,8 +117,12 @@ void receiveEvent(uint8_t howMany)
 void set_pwms(byte angle)
 {
     cli();
+      /*
       OCR1A = angle+32;
       OCR1B = angle+64;
+      */
+      OCR1A = 100;
+      OCR1B = 100;
     sei();
 }
 
