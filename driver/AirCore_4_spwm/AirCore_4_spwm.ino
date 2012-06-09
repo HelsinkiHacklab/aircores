@@ -17,7 +17,7 @@ const uint32_t   MillisecondInTicks = 16000;
 const uint32_t   SecondInTicks = 16000000;
 const uint8_t    pwmScaler = 8;                  // 0..8?
 
-const bool       demo = false;                    // Demo mode
+const bool       demo = true;                    // Demo mode
 
 
 volatile uint32_t tick_counter_overflow = 0;     // Incremented 244,140625 times per second
@@ -114,7 +114,7 @@ void loop() {
 
   // fill dummy values
   if (demo) {  
-    uint32_t position = time / (MillisecondInTicks*4);    
+    uint32_t position = time / (MillisecondInTicks*16);    
     
     for (uint8_t i = 0; i < MotorCount; ++i) {
         meterValue[i] = position; //(i + 3);
