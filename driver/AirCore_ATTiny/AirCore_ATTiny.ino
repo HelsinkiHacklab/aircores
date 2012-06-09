@@ -44,11 +44,31 @@ void setup()
     digitalWrite(2, HIGH);
      */
      
+     /*
     // This is here just to test bit-banging
     digitalWrite(3, HIGH);
+    */
+
+    // Iinitialize fast PWM
+    cli();
+      // Initialize PLL clock as PWM source
+      PLLCSR |= (1<<PLLE); /* Enable PLL */
+      while(bit_is_clear(PLLCSR,PLOCK)) ; /* Wait for PLL to lock (approx. 100ms) */
+      PLLCSR |= (1<<PCKE); /* Set PLL as PWM clock source */
+      
+      // Initialize timer1 for PWM
+      TCCR1 |= (1<<PWM1A); /* Enable OCR1A as PWM */
+      GTCCR |= (1<<PWM1B); /* Enable OCR1B as PWM */
+      TCCR1 = (TCCR1 & B11110000) | B0001; /* Timer1 prescaler bits */
+      // Set the PWM output pins and modes
+      TCCR1 = (TCCR1 & B11001111) | B10 << 4; /* OC1A (soic pin 6) as PWM output,  */
+      GTCCR = (GTCCR & B11001111) | B01 << 4; /* OC1B (soic pin 1) as PWM output and pin 3 as complement  */
+      // Disable Timer1 interrupts (we use only the HW PWM in this timer)
+      TIMSK = (TIMSK & B10011011) | 0x0; 
+    sei();
     
     // Init to default angle
-    set_pwms(i2c_regs[0]);
+    set_pwms(i2c_regs[0] + i2c_regs[1]);
 }
 
 void receiveEvent(uint8_t howMany)
@@ -89,8 +109,10 @@ void receiveEvent(uint8_t howMany)
 
 void set_pwms(byte angle)
 {
-    // TODO: use the OC registers so we get the complements etc
-    analogWrite(1, angle);
+    cli();
+      OCR1A = angle;
+      OCR1B = angle+128;
+    sei();
 }
 
 void loop()
@@ -106,9 +128,5 @@ void loop()
         // TODO: Store the offset etc configuration registers to EEPROM
         write_eeprom = false;
     }
-
-    // Dummy for now just to test the I2C receiver
-    digitalWrite(4, !digitalRead(4));
-    digitalWrite(3, !digitalRead(3));
 }
 
