@@ -2,6 +2,7 @@
 #define I2C_DEFAULT_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this)
 // Get this from http://www.arduino.cc/playground/Code/USIi2c
 #include <TinyWireS.h>
+#include "sintable.h"
 
 /**
  * Pin notes by Suovula
