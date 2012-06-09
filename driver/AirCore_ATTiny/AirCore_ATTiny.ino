@@ -29,7 +29,7 @@ volatile boolean write_eeprom = false;
 void setup()
 {
     // Note that pin number are as per http://hlt.media.mit.edu/?p=1229
-    pinMode(1, OUTPUT); // The HW-PWM -pin supported by the tiny core
+    pinMode(1, OUTPUT); // OC1A, also The only HW-PWM -pin supported by the tiny core analogWrite
     pinMode(3, OUTPUT); // OC1B-
     pinMode(4, OUTPUT); // OC1B
 
