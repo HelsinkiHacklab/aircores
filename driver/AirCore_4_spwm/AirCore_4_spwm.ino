@@ -85,9 +85,14 @@ void setup() {
   digitalWrite(13, HIGH);
 }
 
-
+// TODO: Check that we have at least two bytes before going on and supposing first one is register...
 void receiveEvent(int howMany)
 {
+    if (howMany < 2)
+    {
+        // We're only interested when we know we can suppose the first byte is register address
+        return;
+    }
     byte reg_addr = Wire.read();
     byte max_reg = reg_addr + howMany - 1;
     
