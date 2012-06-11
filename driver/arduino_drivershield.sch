@@ -1973,9 +1973,9 @@ Based on the following sources:
 <instance part="IC3" gate="F" x="109.22" y="55.88"/>
 <instance part="IC3" gate="C" x="68.58" y="121.92"/>
 <instance part="IC3" gate="D" x="68.58" y="111.76"/>
-<instance part="IC3" gate="P" x="58.42" y="104.14"/>
-<instance part="GND10" gate="1" x="55.88" y="96.52" rot="R270"/>
-<instance part="U$2" gate="G$1" x="58.42" y="111.76" rot="R90"/>
+<instance part="IC3" gate="P" x="58.42" y="129.54"/>
+<instance part="GND10" gate="1" x="55.88" y="121.92" rot="R270"/>
+<instance part="U$2" gate="G$1" x="58.42" y="137.16" rot="R90"/>
 <instance part="U$3" gate="G$1" x="119.38" y="88.9"/>
 <instance part="U$4" gate="G$1" x="119.38" y="66.04"/>
 <instance part="GND2" gate="1" x="180.34" y="-2.54"/>
@@ -2064,13 +2064,10 @@ Based on the following sources:
 <pinref part="U$1" gate="G$1" pin="5V"/>
 </segment>
 <segment>
-<pinref part="IC3" gate="D" pin="I"/>
 <pinref part="IC3" gate="P" pin="VCC"/>
 <pinref part="U$2" gate="G$1" pin="5V"/>
-<junction x="58.42" y="111.76"/>
 <pinref part="U$2" gate="G$1" pin="5V"/>
-<pinref part="IC3" gate="C" pin="I"/>
-<wire x1="58.42" y1="121.92" x2="58.42" y2="111.76" width="0.1524" layer="91"/>
+<junction x="58.42" y="137.16"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VCC"/>
@@ -2129,6 +2126,10 @@ Based on the following sources:
 <segment>
 <pinref part="IC3" gate="P" pin="GND"/>
 <pinref part="GND10" gate="1" pin="GND"/>
+<pinref part="IC3" gate="D" pin="I"/>
+<pinref part="IC3" gate="C" pin="I"/>
+<wire x1="58.42" y1="111.76" x2="58.42" y2="121.92" width="0.1524" layer="91"/>
+<junction x="58.42" y="121.92"/>
 </segment>
 <segment>
 <pinref part="GND3" gate="1" pin="GND"/>
@@ -2512,6 +2513,11 @@ Based on the following sources:
 <pinref part="IC9" gate="B" pin="I"/>
 <wire x1="119.38" y1="-30.48" x2="99.06" y2="-30.48" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="-30.48" x2="99.06" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-33.02" x2="86.36" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="-33.02" x2="86.36" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="*D11"/>
+<wire x1="86.36" y1="17.78" x2="38.1" y2="17.78" width="0.1524" layer="91"/>
+<junction x="99.06" y="-33.02"/>
 </segment>
 </net>
 <net name="N$50" class="0">
@@ -2520,6 +2526,11 @@ Based on the following sources:
 <pinref part="IC9" gate="A" pin="I"/>
 <wire x1="119.38" y1="-25.4" x2="99.06" y2="-25.4" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="-25.4" x2="99.06" y2="-27.94" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="*D10"/>
+<wire x1="38.1" y1="20.32" x2="88.9" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="20.32" x2="88.9" y2="-27.94" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-27.94" x2="99.06" y2="-27.94" width="0.1524" layer="91"/>
+<junction x="99.06" y="-27.94"/>
 </segment>
 </net>
 <net name="N$51" class="0">
@@ -2528,6 +2539,11 @@ Based on the following sources:
 <wire x1="119.38" y1="-48.26" x2="99.06" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="-48.26" x2="99.06" y2="-50.8" width="0.1524" layer="91"/>
 <pinref part="IC9" gate="E" pin="I"/>
+<wire x1="99.06" y1="-50.8" x2="83.82" y2="-50.8" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="-50.8" x2="83.82" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="D12"/>
+<wire x1="83.82" y1="15.24" x2="38.1" y2="15.24" width="0.1524" layer="91"/>
+<junction x="99.06" y="-50.8"/>
 </segment>
 </net>
 <net name="N$52" class="0">
@@ -2536,6 +2552,11 @@ Based on the following sources:
 <pinref part="IC9" gate="F" pin="I"/>
 <pinref part="IC8" gate="G$1" pin="IN1"/>
 <wire x1="119.38" y1="-53.34" x2="99.06" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-55.88" x2="81.28" y2="-55.88" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="-55.88" x2="81.28" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="D13"/>
+<wire x1="81.28" y1="12.7" x2="38.1" y2="12.7" width="0.1524" layer="91"/>
+<junction x="99.06" y="-55.88"/>
 </segment>
 </net>
 <net name="N$53" class="0">
