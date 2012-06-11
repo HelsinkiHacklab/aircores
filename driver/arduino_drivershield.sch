@@ -2146,7 +2146,6 @@ Based on the following sources:
 <junction x="12.7" y="15.24"/>
 <wire x1="12.7" y1="15.24" x2="12.7" y2="17.78" width="0.1524" layer="91"/>
 <junction x="12.7" y="17.78"/>
-<wire x1="12.7" y1="7.62" x2="12.7" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND9" gate="1" pin="GND"/>
@@ -2548,28 +2547,19 @@ Based on the following sources:
 </net>
 <net name="N$51" class="0">
 <segment>
-<pinref part="IC8" gate="G$1" pin="IN4"/>
-<wire x1="119.38" y1="-48.26" x2="99.06" y2="-48.26" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="-48.26" x2="99.06" y2="-50.8" width="0.1524" layer="91"/>
-<pinref part="IC9" gate="E" pin="I"/>
-<wire x1="99.06" y1="-50.8" x2="83.82" y2="-50.8" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="-50.8" x2="83.82" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="D12"/>
-<wire x1="83.82" y1="15.24" x2="38.1" y2="15.24" width="0.1524" layer="91"/>
-<junction x="99.06" y="-50.8"/>
-</segment>
-</net>
-<net name="N$52" class="0">
-<segment>
 <wire x1="99.06" y1="-53.34" x2="99.06" y2="-55.88" width="0.1524" layer="91"/>
 <pinref part="IC9" gate="F" pin="I"/>
 <pinref part="IC8" gate="G$1" pin="IN1"/>
 <wire x1="119.38" y1="-53.34" x2="99.06" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="-55.88" x2="81.28" y2="-55.88" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="-55.88" x2="81.28" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="D13"/>
-<wire x1="81.28" y1="12.7" x2="38.1" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="12.7" x2="45.72" y2="12.7" width="0.1524" layer="91"/>
 <junction x="99.06" y="-55.88"/>
+<pinref part="U1" gate="G$1" pin="A0"/>
+<wire x1="12.7" y1="48.26" x2="0" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="0" y1="48.26" x2="0" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="0" y1="5.08" x2="45.72" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="12.7" x2="45.72" y2="5.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$53" class="0">
@@ -2708,6 +2698,23 @@ Based on the following sources:
 <wire x1="-27.94" y1="40.64" x2="-27.94" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="-33.02" x2="-22.86" y2="-33.02" width="0.1524" layer="91"/>
 <junction x="-22.86" y="-33.02"/>
+</segment>
+</net>
+<net name="N$28" class="0">
+<segment>
+<pinref part="IC8" gate="G$1" pin="IN4"/>
+<wire x1="119.38" y1="-48.26" x2="99.06" y2="-48.26" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="-48.26" x2="99.06" y2="-50.8" width="0.1524" layer="91"/>
+<pinref part="IC9" gate="E" pin="I"/>
+<junction x="99.06" y="-50.8"/>
+<wire x1="99.06" y1="-50.8" x2="83.82" y2="-50.8" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="-50.8" x2="83.82" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="15.24" x2="43.18" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="7.62" x2="43.18" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="A1"/>
+<wire x1="12.7" y1="45.72" x2="2.54" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="45.72" x2="2.54" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="7.62" x2="43.18" y2="7.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
