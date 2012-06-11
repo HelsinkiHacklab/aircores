@@ -2721,23 +2721,35 @@ Based on the following sources:
 </sheet>
 </sheets>
 <errors>
+<approved hash="101,1,78.74,121.92,IC3C,O,,,,"/>
+<approved hash="101,1,78.74,111.76,IC3D,O,,,,"/>
+<approved hash="101,1,119.38,121.92,IC6C,O,,,,"/>
+<approved hash="101,1,119.38,111.76,IC6D,O,,,,"/>
+<approved hash="101,1,152.4,121.92,IC9D,O,,,,"/>
+<approved hash="101,1,152.4,111.76,IC9C,O,,,,"/>
+<approved hash="101,1,185.42,124.46,IC12C,O,,,,"/>
+<approved hash="101,1,185.42,114.3,IC12D,O,,,,"/>
 <approved hash="104,1,119.38,88.9,IC1,VCC,5V,,,"/>
 <approved hash="104,1,119.38,66.04,IC2,VCC,5V,,,"/>
-<approved hash="104,1,119.38,43.18,IC3,VCC,5V,,,"/>
-<approved hash="104,1,119.38,22.86,IC4,VCC,5V,,,"/>
-<approved hash="104,1,119.38,2.54,IC5,VCC,5V,,,"/>
-<approved hash="104,1,119.38,-20.32,IC6,VCC,5V,,,"/>
-<approved hash="104,1,119.38,-43.18,IC7,VCC,5V,,,"/>
-<approved hash="104,1,119.38,-60.96,IC8,VCC,5V,,,"/>
-<approved hash="104,1,15.24,2.54,IC9P,VCC,5V,,,"/>
-<approved hash="104,1,15.24,-5.08,IC10P,VCC,5V,,,"/>
-<approved hash="104,1,15.24,-12.7,IC11P,VCC,5V,,,"/>
-<approved hash="111,1,5.08,-53.34,N$30,,,,,"/>
+<approved hash="104,1,58.42,137.16,IC3P,VCC,5V,,,"/>
+<approved hash="104,1,119.38,33.02,IC4,VCC,5V,,,"/>
+<approved hash="104,1,119.38,10.16,IC5,VCC,5V,,,"/>
+<approved hash="104,1,99.06,137.16,IC6P,VCC,5V,,,"/>
+<approved hash="104,1,119.38,-22.86,IC7,VCC,5V,,,"/>
+<approved hash="104,1,119.38,-45.72,IC8,VCC,5V,,,"/>
+<approved hash="104,1,132.08,137.16,IC9P,VCC,5V,,,"/>
+<approved hash="104,1,-2.54,0,IC10,VCC,5V,,,"/>
+<approved hash="104,1,-2.54,-22.86,IC11,VCC,5V,,,"/>
+<approved hash="104,1,165.1,139.7,IC12P,VCC,5V,,,"/>
 <approved hash="115,1,26.6277,64.9012,JP1,,,,,"/>
-<approved hash="115,1,187.96,86.5547,SV1,,,,,"/>
-<approved hash="115,1,187.96,40.8347,SV2,,,,,"/>
-<approved hash="115,1,187.96,0.194731,SV3,,,,,"/>
-<approved hash="115,1,187.96,-45.5253,SV4,,,,,"/>
+<approved hash="115,1,183.557,83.6253,JP2,,,,,"/>
+<approved hash="115,1,183.557,60.7653,JP3,,,,,"/>
+<approved hash="115,1,183.557,27.7453,JP4,,,,,"/>
+<approved hash="115,1,183.557,4.88527,JP5,,,,,"/>
+<approved hash="115,1,183.557,-28.1347,JP6,,,,,"/>
+<approved hash="115,1,183.557,-50.9947,JP7,,,,,"/>
+<approved hash="115,1,61.6373,-5.27473,JP8,,,,,"/>
+<approved hash="115,1,61.6373,-28.1347,JP9,,,,,"/>
 </errors>
 </schematic>
 </drawing>
