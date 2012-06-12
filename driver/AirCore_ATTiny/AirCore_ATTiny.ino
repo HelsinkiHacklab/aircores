@@ -1,6 +1,6 @@
 //TinyWire uses variable named I2C_SLAVE_ADDR, so we use the longer writing form here
 #define I2C_DEFAULT_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this)
-// Get this from http://www.arduino.cc/playground/Code/USIi2c
+// Get this from https://github.com/rambo/TinyWire
 #include <TinyWireS.h>
 #include "sintable.h"
 
