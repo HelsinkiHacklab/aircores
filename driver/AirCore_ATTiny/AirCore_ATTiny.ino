@@ -65,25 +65,14 @@ void setup()
     TinyWireS.begin(i2c_regs[2]);
     /**
      * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
+     * Or is the new arduino env to blame ?
     digitalWrite(0, HIGH);
     digitalWrite(2, HIGH);
      */
-
-    // Init to default angle
-    //set_pwms(i2c_regs[0] + i2c_regs[1]);
 }
 
 void receiveEvent(uint8_t howMany)
 {
-    /*
-    // Simpllify...
-    i2c_regs[0] = TinyWireS.receive();
-    byte angle = i2c_regs[0] + i2c_regs[1];
-    set_pwms(angle);
-    demo_mode = false;
-    return;
-    */
-
     if (howMany < 2)
     {
         // We're only interested when we know we can suppose the first byte is register address
