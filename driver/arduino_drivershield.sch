@@ -5579,6 +5579,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND22" library="supply1" deviceset="GNDA" device=""/>
 <part name="P+15" library="supply1" deviceset="V+" device=""/>
 <part name="P+16" library="supply1" deviceset="V+" device=""/>
+<part name="J2" library="jumper" deviceset="J" device="5MM"/>
+<part name="GND9" library="supply1" deviceset="GNDA" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5653,7 +5655,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="U$3" gate="G$1" x="-15.24" y="2.54" rot="R90"/>
 <instance part="GND14" gate="1" x="60.96" y="-35.56"/>
 <instance part="GND6" gate="1" x="60.96" y="-15.24"/>
-<instance part="GND7" gate="1" x="180.34" y="-58.42"/>
+<instance part="GND7" gate="1" x="182.88" y="-60.96"/>
 <instance part="GND2" gate="1" x="180.34" y="-35.56"/>
 <instance part="GND4" gate="1" x="180.34" y="-2.54"/>
 <instance part="GND3" gate="1" x="180.34" y="20.32"/>
@@ -5683,6 +5685,8 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="GND22" gate="1" x="73.66" y="-10.16"/>
 <instance part="P+15" gate="1" x="73.66" y="-20.32"/>
 <instance part="P+16" gate="1" x="73.66" y="2.54"/>
+<instance part="J2" gate="1" x="-10.16" y="17.78"/>
+<instance part="GND9" gate="1" x="-15.24" y="12.7"/>
 </instances>
 <busses>
 </busses>
@@ -6340,6 +6344,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC8" gate="G$1" pin="GND"/>
 <pinref part="GND7" gate="1" pin="GNDA"/>
+<wire x1="182.88" y1="-58.42" x2="180.34" y2="-55.88" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC7" gate="G$1" pin="GND"/>
@@ -6398,6 +6403,11 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="60.96" y1="-33.02" x2="58.42" y2="-33.02" width="0.1524" layer="91"/>
 <pinref part="GND14" gate="1" pin="GNDA"/>
 </segment>
+<segment>
+<pinref part="J2" gate="1" pin="1"/>
+<pinref part="GND9" gate="1" pin="GNDA"/>
+<wire x1="-15.24" y1="15.24" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="GND@2" class="0">
 <segment>
@@ -6411,6 +6421,7 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="12.7" y1="17.78" x2="12.7" y2="15.24" width="0.1524" layer="91"/>
 <junction x="12.7" y="17.78"/>
 <junction x="12.7" y="15.24"/>
+<pinref part="J2" gate="1" pin="2"/>
 </segment>
 <segment>
 <pinref part="IC3" gate="P" pin="GND"/>
@@ -6457,18 +6468,6 @@ Source: AVX .. aphvc.pdf</description>
 <approved hash="101,1,152.4,111.76,IC9C,O,,,,"/>
 <approved hash="101,1,185.42,124.46,IC12C,O,,,,"/>
 <approved hash="101,1,185.42,114.3,IC12D,O,,,,"/>
-<approved hash="104,1,119.38,88.9,IC1,VCC,5V,,,"/>
-<approved hash="104,1,119.38,66.04,IC2,VCC,5V,,,"/>
-<approved hash="104,1,58.42,137.16,IC3P,VCC,5V,,,"/>
-<approved hash="104,1,119.38,33.02,IC4,VCC,5V,,,"/>
-<approved hash="104,1,119.38,10.16,IC5,VCC,5V,,,"/>
-<approved hash="104,1,99.06,137.16,IC6P,VCC,5V,,,"/>
-<approved hash="104,1,119.38,-22.86,IC7,VCC,5V,,,"/>
-<approved hash="104,1,119.38,-45.72,IC8,VCC,5V,,,"/>
-<approved hash="104,1,132.08,137.16,IC9P,VCC,5V,,,"/>
-<approved hash="104,1,-2.54,0,IC10,VCC,5V,,,"/>
-<approved hash="104,1,-2.54,-22.86,IC11,VCC,5V,,,"/>
-<approved hash="104,1,165.1,139.7,IC12P,VCC,5V,,,"/>
 <approved hash="115,1,26.6277,64.9012,JP1,,,,,"/>
 <approved hash="115,1,183.557,83.6253,JP2,,,,,"/>
 <approved hash="115,1,183.557,60.7653,JP3,,,,,"/>
