@@ -5654,7 +5654,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="J1" gate="1" x="-10.16" y="2.54"/>
 <instance part="U$3" gate="G$1" x="-15.24" y="2.54" rot="R90"/>
 <instance part="GND14" gate="1" x="60.96" y="-35.56"/>
-<instance part="GND6" gate="1" x="58.42" y="-12.7"/>
+<instance part="GND6" gate="1" x="60.96" y="-15.24"/>
 <instance part="GND7" gate="1" x="180.34" y="-58.42"/>
 <instance part="GND2" gate="1" x="180.34" y="-35.56"/>
 <instance part="GND4" gate="1" x="180.34" y="-2.54"/>
@@ -6385,6 +6385,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC10" gate="G$1" pin="GND"/>
 <pinref part="GND6" gate="1" pin="GNDA"/>
+<wire x1="60.96" y1="-12.7" x2="58.42" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC8" gate="G$1" pin="GND"/>
@@ -6446,8 +6447,6 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="GND22" gate="1" pin="GNDA"/>
 </segment>
-</net>
-<net name="@GND3" class="1">
 <segment>
 <pinref part="IC11" gate="G$1" pin="GND"/>
 <wire x1="60.96" y1="-33.02" x2="58.42" y2="-33.02" width="0.1524" layer="91"/>
