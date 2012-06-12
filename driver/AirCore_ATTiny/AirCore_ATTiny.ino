@@ -26,6 +26,7 @@ volatile uint8_t i2c_regs[] =
 
 
 volatile boolean write_eeprom = false;
+volatile boolean demo_mode = true;
 
 void setup()
 {
@@ -90,7 +91,10 @@ void receiveEvent(uint8_t howMany)
             case 0x0:
             case 0x1:
             {
-                // TODO: Set the PWM values from the angle
+                if (i == 0x0)
+                {
+                    demo_mode = false;
+                }
                 byte angle = i2c_regs[0] + i2c_regs[1];
                 set_pwms(angle);
                 if (i == 0x1)
@@ -132,7 +136,6 @@ byte i;
 int ii;
 void loop()
 {
-    /*
     // Poor-mans event handling (tinywire lib does not yet trigger the event right away), though I still wonder if we can still get two triggers during one I2C transaction (which will mess things up)
     uint8_t i2c_available = TinyWireS.available();
     if (i2c_available > 1)
@@ -144,18 +147,19 @@ void loop()
         // TODO: Store the offset etc configuration registers to EEPROM
         write_eeprom = false;
     }
-    */
-    
-    // Roll the pwm
-    //set_pwms(i);
-    set_pwms4096(ii);
-    delay(50);
-    i++;
-    ii += 2;
-    if (i > 4095)
+
+    if (demo_mode)
     {
-        0;
+        // Roll the pwm
+        //set_pwms(i);
+        set_pwms4096(ii);
+        delay(50);
+        i++;
+        ii += 2;
+        if (i > 4095)
+        {
+            0;
+        }
     }
-    
 }
 
