@@ -1,7 +1,7 @@
 //TinyWire uses variable named I2C_SLAVE_ADDR, so we use the longer writing form here
 #define I2C_DEFAULT_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this)
 // Get this from http://www.arduino.cc/playground/Code/USIi2c
-//#include <TinyWireS.h>
+#include <TinyWireS.h>
 #include "sintable.h"
 
 /**
@@ -74,7 +74,6 @@ void setup()
 
 void receiveEvent(uint8_t howMany)
 {
-    /*
     if (howMany < 2)
     {
         // We're only interested when we know we can suppose the first byte is register address
@@ -107,7 +106,6 @@ void receiveEvent(uint8_t howMany)
             }
         }
     }
-    */
 }
 
 void set_pwms(byte angle)
