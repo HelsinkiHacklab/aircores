@@ -75,21 +75,21 @@ void setup()
 
 void receiveEvent(uint8_t howMany)
 {
+    /*
     // Simpllify...
     i2c_regs[0] = TinyWireS.receive();
     byte angle = i2c_regs[0] + i2c_regs[1];
     set_pwms(angle);
     demo_mode = false;
     return;
+    */
 
-
-    /*
     if (howMany < 2)
     {
         // We're only interested when we know we can suppose the first byte is register address
         return;
     }
-    */
+
     byte reg_addr = TinyWireS.receive();
     byte max_reg = reg_addr + howMany - 1;
     
@@ -148,7 +148,7 @@ void loop()
 {
     // Poor-mans event handling (tinywire lib does not yet trigger the event right away), though I still wonder if we can still get two triggers during one I2C transaction (which will mess things up)
     uint8_t i2c_available = TinyWireS.available();
-    if (i2c_available > 0)
+    if (i2c_available > 1)
     {
         receiveEvent(i2c_available);
     }
