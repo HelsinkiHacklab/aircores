@@ -62,7 +62,7 @@ void setup()
     sei();
     
     // Enable I2C Slave
-    //TinyWireS.begin(i2c_regs[2]);
+    TinyWireS.begin(i2c_regs[2]);
     /**
      * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
     digitalWrite(0, HIGH);
