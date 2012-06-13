@@ -5613,7 +5613,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="GND20" gate="1" x="193.04" y="-55.88"/>
 <instance part="P+14" gate="1" x="193.04" y="-43.18"/>
 <instance part="GND21" gate="1" x="73.66" y="-33.02"/>
-<instance part="GND22" gate="1" x="73.66" y="-10.16"/>
+<instance part="GND22" gate="1" x="73.66" y="-12.7"/>
 <instance part="P+15" gate="1" x="73.66" y="-20.32"/>
 <instance part="P+16" gate="1" x="73.66" y="2.54"/>
 <instance part="GND9" gate="1" x="-15.24" y="12.7"/>
@@ -6248,80 +6248,6 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="P+16" gate="1" pin="V+"/>
 </segment>
 </net>
-<net name="FOO" class="1">
-<segment>
-<pinref part="IC8" gate="G$1" pin="GND"/>
-<pinref part="GND7" gate="1" pin="GNDA"/>
-<wire x1="182.88" y1="-58.42" x2="180.34" y2="-55.88" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="IC7" gate="G$1" pin="GND"/>
-<pinref part="GND2" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="IC5" gate="G$1" pin="GND"/>
-<pinref part="GND4" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="IC4" gate="G$1" pin="GND"/>
-<pinref part="GND3" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="IC2" gate="G$1" pin="GND"/>
-<pinref part="GND5" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="IC1" gate="G$1" pin="GND"/>
-<pinref part="GND8" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C8" gate="G$1" pin="2"/>
-<pinref part="GND15" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C7" gate="G$1" pin="2"/>
-<pinref part="GND16" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C6" gate="G$1" pin="2"/>
-<pinref part="GND17" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C5" gate="G$1" pin="2"/>
-<pinref part="GND18" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C4" gate="G$1" pin="2"/>
-<pinref part="GND19" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C3" gate="G$1" pin="2"/>
-<pinref part="GND20" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C2" gate="G$1" pin="2"/>
-<pinref part="GND21" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="C1" gate="G$1" pin="2"/>
-<pinref part="GND22" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="IC11" gate="G$1" pin="GND"/>
-<wire x1="60.96" y1="-33.02" x2="58.42" y2="-33.02" width="0.1524" layer="91"/>
-<pinref part="GND14" gate="1" pin="GNDA"/>
-</segment>
-<segment>
-<pinref part="GND23" gate="1" pin="GNDA"/>
-<wire x1="-7.62" y1="27.94" x2="-5.08" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="SJ3" gate="1" pin="1"/>
-</segment>
-<segment>
-<pinref part="GND24" gate="1" pin="GNDA"/>
-<wire x1="-7.62" y1="38.1" x2="-5.08" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="SJ4" gate="1" pin="1"/>
-</segment>
-</net>
 <net name="GND" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="GND@0"/>
@@ -6428,6 +6354,79 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="GND9" gate="1" pin="GNDA"/>
 <wire x1="-15.24" y1="15.24" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="SJ1" gate="1" pin="1"/>
+</segment>
+<segment>
+<pinref part="IC8" gate="G$1" pin="GND"/>
+<pinref part="GND7" gate="1" pin="GNDA"/>
+<wire x1="182.88" y1="-58.42" x2="180.34" y2="-55.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC7" gate="G$1" pin="GND"/>
+<pinref part="GND2" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="G$1" pin="GND"/>
+<pinref part="GND4" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="IC4" gate="G$1" pin="GND"/>
+<pinref part="GND3" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="GND"/>
+<pinref part="GND5" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="GND"/>
+<pinref part="GND8" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C8" gate="G$1" pin="2"/>
+<pinref part="GND15" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C7" gate="G$1" pin="2"/>
+<pinref part="GND16" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="GND17" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="2"/>
+<pinref part="GND18" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C4" gate="G$1" pin="2"/>
+<pinref part="GND19" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="GND20" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="GND21" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="GND22" gate="1" pin="GNDA"/>
+<wire x1="73.66" y1="-10.16" x2="73.66" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC11" gate="G$1" pin="GND"/>
+<wire x1="60.96" y1="-33.02" x2="58.42" y2="-33.02" width="0.1524" layer="91"/>
+<pinref part="GND14" gate="1" pin="GNDA"/>
+</segment>
+<segment>
+<pinref part="GND23" gate="1" pin="GNDA"/>
+<wire x1="-7.62" y1="27.94" x2="-5.08" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="SJ3" gate="1" pin="1"/>
+</segment>
+<segment>
+<pinref part="GND24" gate="1" pin="GNDA"/>
+<wire x1="-7.62" y1="38.1" x2="-5.08" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="SJ4" gate="1" pin="1"/>
 </segment>
 </net>
 </nets>
