@@ -6312,11 +6312,6 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="GND14" gate="1" pin="GNDA"/>
 </segment>
 <segment>
-<pinref part="GND9" gate="1" pin="GNDA"/>
-<wire x1="-15.24" y1="15.24" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="SJ1" gate="1" pin="1"/>
-</segment>
-<segment>
 <pinref part="GND23" gate="1" pin="GNDA"/>
 <wire x1="-7.62" y1="27.94" x2="-5.08" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="SJ3" gate="1" pin="1"/>
@@ -6428,6 +6423,11 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="IC10" gate="G$1" pin="GND"/>
 <pinref part="GND6" gate="1" pin="GNDA"/>
 <wire x1="60.96" y1="-12.7" x2="58.42" y2="-10.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND9" gate="1" pin="GNDA"/>
+<wire x1="-15.24" y1="15.24" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="SJ1" gate="1" pin="1"/>
 </segment>
 </net>
 </nets>
