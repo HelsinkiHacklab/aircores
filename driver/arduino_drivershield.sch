@@ -5615,7 +5615,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="GND21" gate="1" x="73.66" y="-33.02"/>
 <instance part="GND22" gate="1" x="73.66" y="-12.7"/>
 <instance part="P+15" gate="1" x="73.66" y="-20.32"/>
-<instance part="P+16" gate="1" x="73.66" y="2.54"/>
+<instance part="P+16" gate="1" x="73.66" y="7.62"/>
 <instance part="GND9" gate="1" x="-15.24" y="12.7"/>
 <instance part="C9" gate="G$1" x="58.42" y="109.22"/>
 <instance part="C10" gate="G$1" x="99.06" y="109.22"/>
@@ -6246,6 +6246,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="C1" gate="G$1" pin="1"/>
 <pinref part="P+16" gate="1" pin="V+"/>
+<wire x1="73.66" y1="5.08" x2="73.66" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
