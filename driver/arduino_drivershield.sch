@@ -12882,8 +12882,6 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <wire x1="-7.62" y1="38.1" x2="-5.08" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="SJ4" gate="1" pin="1"/>
 </segment>
-</net>
-<net name="GNDA" class="0">
 <segment>
 <pinref part="SJ1" gate="1" pin="1"/>
 <pinref part="GND9" gate="1" pin="GNDA"/>
