@@ -5,7 +5,7 @@
 // Get this from https://github.com/rambo/TinyWire
 #include <TinyWireS.h>
 #include "sintable.h"
-// Use the AVR block functions directly (looping over arrays using the EEPROM Arduino library writing a byte at a time is just stupid)
+// Use the AVR block functions directly (looping over arrays using the EEPROM Arduino library writing a byte at a time is just stupid), see also http://arduino.cc/playground/Code/EEPROMWriteAnything
 #include <avr/eeprom.h>
 
 /**
