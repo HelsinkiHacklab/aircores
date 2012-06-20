@@ -4574,7 +4574,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <instance part="P+2" gate="1" x="114.3" y="55.88" rot="R270"/>
 <instance part="C1" gate="G$1" x="38.1" y="96.52" rot="R90"/>
 <instance part="C2" gate="G$1" x="121.92" y="93.98" rot="R90"/>
-<instance part="LED1" gate="G$1" x="68.58" y="96.52" rot="R270"/>
+<instance part="LED1" gate="G$1" x="63.5" y="76.2" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -4613,9 +4613,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="50.8" y1="83.82" x2="63.5" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="63.5" y1="83.82" x2="63.5" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="63.5" y1="96.52" x2="43.18" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="LED1" gate="G$1" pin="C"/>
-<junction x="63.5" y="96.52"/>
+<wire x1="43.18" y1="96.52" x2="63.5" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J1" gate="G$1" pin="6"/>
@@ -4645,10 +4643,13 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <pinref part="IC1" gate="G$1" pin="VCC"/>
 <pinref part="P+4" gate="1" pin="+5V"/>
 <wire x1="50.8" y1="66.04" x2="66.04" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="66.04" x2="66.04" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="66.04" x2="66.04" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="66.04" y1="76.2" x2="66.04" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="91.44" x2="35.56" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="91.44" x2="35.56" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="LED1" gate="G$1" pin="A"/>
+<junction x="66.04" y="76.2"/>
 </segment>
 <segment>
 <pinref part="J1" gate="G$1" pin="2"/>
@@ -4756,10 +4757,9 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </net>
 <net name="N$3" class="0">
 <segment>
+<pinref part="LED1" gate="G$1" pin="C"/>
 <pinref part="IC1" gate="G$1" pin="PB3/PCINT3/CLKI/ADC3"/>
-<pinref part="LED1" gate="G$1" pin="A"/>
-<wire x1="50.8" y1="76.2" x2="71.12" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="76.2" x2="71.12" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="76.2" x2="50.8" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
