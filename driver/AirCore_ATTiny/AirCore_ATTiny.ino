@@ -1,11 +1,15 @@
 //TinyWire uses variable named I2C_SLAVE_ADDR, so we use the longer writing form here
 #define I2C_DEFAULT_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this)
+#define REGS_EEPROM_OFFSET 1 // From which value onwards to write the regs to EEPROM
+#define REGS_ADDRESS_OFFSET 2 // From which value onwards to write the regs to EEPROM
 // Get this from https://github.com/rambo/TinyWire
 #include <TinyWireS.h>
 #include "sintable.h"
+// Use the AVR block functions directly (looping over arrays using the EEPROM Arduino library writing a byte at a time is just stupid)
+#include <avr/eeprom.h>
 
 /**
- * Pin notes by Suovula
+ * Pin notes by Suovula (see also http://hlt.media.mit.edu/?p=1229)
  *
 // I2C
 arduino pin 0 = not(OC1A) = PORTB <- _BV(0) = SOIC pin 5 (I2C SDA)
@@ -19,23 +23,40 @@ arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3
 volatile uint8_t i2c_regs[] =
 { 
   0, // angle
-  0, // offset (will be stored to EEPROM after wards)
-  I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM on next device start this will be the new address
+  0, // offset (will be stored to EEPROM after writing)
+  I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM, on next device start this will be the new address
   //TODO: make the PWM scaler configurable with I2C register ? 
+  0xfc, // This last value is a magic number used to check that the data in EEPROM is ours (TODO: switch to some sort of simple checksum ?)
 };
 
 
 volatile boolean write_eeprom = false;
 volatile boolean demo_mode = true;
 
+void regs_eeprom_read()
+{
+    eeprom_read_block((void*)&i2c_regs[REGS_EEPROM_OFFSET], (void*)0, sizeof(i2c_regs)-REGS_EEPROM_OFFSET);
+    if (i2c_regs[sizeof(i2c_regs)-1] != 0xfc)
+    {
+        // Insane value, restore default I2C address...
+        i2c_regs[REGS_ADDRESS_OFFSET] = I2C_DEFAULT_SLAVE_ADDRESS;
+    }
+}
+
+void regs_eeprom_write()
+{
+    eeprom_write_block((const void*)&i2c_regs[REGS_EEPROM_OFFSET], (void*)0, sizeof(i2c_regs)-REGS_EEPROM_OFFSET);
+}
+
 void setup()
 {
-    // Note that pin number are as per http://hlt.media.mit.edu/?p=1229
+    // See the note about Arduino pin numbers above, these do *not* match the SOIC pins...
     pinMode(1, OUTPUT); // OC1A, also The only HW-PWM -pin supported by the tiny core analogWrite
     pinMode(3, OUTPUT); // OC1B-
     pinMode(4, OUTPUT); // OC1B
 
-     // TODO: Read the configuration registers from EEPROM
+    // Read the configuration registers from EEPROM
+    regs_eeprom_read();
 
     // Iinitialize fast PWM
     cli();
@@ -62,7 +83,7 @@ void setup()
     sei();
     
     // Enable I2C Slave
-    TinyWireS.begin(i2c_regs[2]);
+    TinyWireS.begin(i2c_regs[REGS_ADDRESS_OFFSET]);
     /**
      * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
      * Or is the new arduino env to blame ?
@@ -144,8 +165,9 @@ void loop()
     }
     if (write_eeprom)
     {
-        // TODO: Store the offset etc configuration registers to EEPROM
+        // Store the offset etc configuration registers to EEPROM
         write_eeprom = false;
+        regs_eeprom_write();
     }
 
     if (demo_mode)
