@@ -23,10 +23,11 @@ arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3
 volatile uint8_t i2c_regs[] =
 { 
   0, // angle
-  0, // offset (will be stored to EEPROM after writing)
+  0, // offset (will be stored to EEPROM (on save command)
   I2C_DEFAULT_SLAVE_ADDRESS, // slave address to store to EEPROM, on next device start this will be the new address
   //TODO: make the PWM scaler configurable with I2C register ? 
   0xfc, // This last value is a magic number used to check that the data in EEPROM is ours (TODO: switch to some sort of simple checksum ?)
+  // ALSO: writing 0x01 to this register triggers saving of data to EEPROM
 };
 
 
@@ -117,20 +118,21 @@ void receiveEvent(uint8_t howMany)
                 }
                 byte angle = i2c_regs[0] + i2c_regs[1];
                 set_pwms(angle);
-                if (i == 0x1)
-                {
-                    write_eeprom = true;
-                }
-                break;
-            }
-            case 0x2:
-            {
-                write_eeprom = true;
                 break;
             }
         }
     }
 
+    // Check for settings store
+    if (i2c_regs[sizeof(i2c_regs)-1] != 0xfc)
+    {
+        if (i2c_regs[sizeof(i2c_regs)-1] == 0x01)
+        {
+            write_eeprom = true;
+        }
+        // Restore the magic number so it gets written correctly
+        i2c_regs[sizeof(i2c_regs)-1] = 0xfc;
+    }
 }
 
 void set_pwms(byte angle)
