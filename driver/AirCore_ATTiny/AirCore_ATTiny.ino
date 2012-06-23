@@ -53,8 +53,12 @@ void setup()
 {
     // See the note about Arduino pin numbers above, these do *not* match the SOIC pins...
     pinMode(1, OUTPUT); // OC1A, also The only HW-PWM -pin supported by the tiny core analogWrite
-    pinMode(3, OUTPUT); // OC1B-
     pinMode(4, OUTPUT); // OC1B
+
+    // TODO: Tri-state this and wait for input voltage to stabilize before enabling the PWMs
+    pinMode(3, OUTPUT); // OC1B-, Arduino pin 3, ADC
+    digitalWrite(3, LOW);
+
 
     // Read the configuration registers from EEPROM
     regs_eeprom_read();
@@ -74,7 +78,7 @@ void setup()
       TCCR1 = (TCCR1 & B11110000) | B0100; // Timer1 prescaler bits
       // Set the PWM output pins and modes
       TCCR1 = (TCCR1 & B11001111) | B10 << 4; // OC1A (soic pin 6) as PWM output
-      GTCCR = (GTCCR & B11001111) | B01 << 4; // OC1B (soic pin 1) as PWM output and pin 3 as complement
+      GTCCR = (GTCCR & B11001111) | B10 << 4; // OC1B (soic pin 1) as PWM output 
       // Disable Timer1 interrupts (we use only the HW PWM in this timer)
       TIMSK = (TIMSK & B10011011) | 0x0;
       // Set full PWM resolution
@@ -91,6 +95,8 @@ void setup()
     digitalWrite(0, HIGH);
     digitalWrite(2, HIGH);
      */
+
+    digitalWrite(3, HIGH);
 }
 
 void receiveEvent(uint8_t howMany)
