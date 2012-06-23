@@ -75,7 +75,7 @@ void setup()
       // Initialize timer1 for PWM
       TCCR1 |= (1<<PWM1A); // Enable OCR1A as PWM 
       GTCCR |= (1<<PWM1B); // Enable OCR1B as PWM
-      TCCR1 = (TCCR1 & B11110000) | B0100; // Timer1 prescaler bits
+      TCCR1 = (TCCR1 & B11110000) | B0101; // Timer1 prescaler bits
       // Set the PWM output pins and modes
       TCCR1 = (TCCR1 & B11001111) | B10 << 4; // OC1A (soic pin 6) as PWM output
       GTCCR = (GTCCR & B11001111) | B10 << 4; // OC1B (soic pin 1) as PWM output 
