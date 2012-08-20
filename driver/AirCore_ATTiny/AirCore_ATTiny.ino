@@ -1,7 +1,7 @@
 //TinyWire uses variable named I2C_SLAVE_ADDR, so we use the longer writing form here
 #define I2C_DEFAULT_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this)
 #define REGS_EEPROM_OFFSET 1 // From which value onwards to write the regs to EEPROM
-#define REGS_ADDRESS_OFFSET 2 // From which value onwards to write the regs to EEPROM
+#define REGS_ADDRESS_OFFSET 2 // In which register is our I2C slave address
 // Get this from https://github.com/rambo/TinyWire
 #include <TinyWireS.h>
 #include "sintable.h"
@@ -46,7 +46,9 @@ void regs_eeprom_read()
 
 void regs_eeprom_write()
 {
+    cli();
     eeprom_write_block((const void*)&i2c_regs[REGS_EEPROM_OFFSET], (void*)0, sizeof(i2c_regs)-REGS_EEPROM_OFFSET);
+    sei();
 }
 
 void setup()
@@ -88,37 +90,48 @@ void setup()
     sei();
     
     // Enable I2C Slave
-    TinyWireS.begin(i2c_regs[REGS_ADDRESS_OFFSET]);
     /**
-     * Enabling internal pull-ups this way does not work (does ATTiny even have those ?)
-     * Or is the new arduino env to blame ?
-    digitalWrite(0, HIGH);
-    digitalWrite(2, HIGH);
+     * Reminder: taking care of pull-ups is the masters job
      */
+    TinyWireS.begin(i2c_regs[REGS_ADDRESS_OFFSET]);
+    TinyWireS.onReceive(receiveEvent);
+    TinyWireS.onRequest(requestEvent);
 
     digitalWrite(3, HIGH);
 }
 
+volatile byte reg_position;
+void requestEvent()
+{  
+    TinyWireS.send(i2c_regs[reg_position]);
+    // Increment the reg position on each read, and loop back to zero
+    reg_position = (reg_position+1) % sizeof(i2c_regs);
+}
+
 void receiveEvent(uint8_t howMany)
 {
-    if (howMany < 2)
+    if (howMany < 1)
     {
-        // We're only interested when we know we can suppose the first byte is register address
+        // Sanity-check
         return;
     }
 
-    byte reg_addr = TinyWireS.receive();
-    byte max_reg = reg_addr + howMany - 1;
-    
-    for (byte i = reg_addr; i < max_reg; i++)
+    reg_position = TinyWireS.receive();
+    howMany--;
+    if (!howMany)
     {
-        i2c_regs[i] = TinyWireS.receive();
-        switch (i)
+        // This write was only to set the buffer for next read
+        return;
+    }
+    while(howMany--)
+    {
+        i2c_regs[reg_position] = TinyWireS.receive();
+        switch (reg_position)
         {
             case 0x0:
             case 0x1:
             {
-                if (i == 0x0)
+                if (reg_position == 0x0)
                 {
                     demo_mode = false;
                 }
@@ -127,6 +140,7 @@ void receiveEvent(uint8_t howMany)
                 break;
             }
         }
+        reg_position = (reg_position+1) % sizeof(i2c_regs);
     }
 
     // Check for settings store
@@ -165,12 +179,13 @@ byte i;
 int ii;
 void loop()
 {
-    // Poor-mans event handling (tinywire lib does not yet trigger the event right away), though I still wonder if we can still get two triggers during one I2C transaction (which will mess things up)
-    uint8_t i2c_available = TinyWireS.available();
-    if (i2c_available > 1)
-    {
-        receiveEvent(i2c_available);
-    }
+    /**
+     * This is the only way we can detect stop condition (http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=984716&sid=82e9dc7299a8243b86cf7969dd41b5b5#984716)
+     * it needs to be called in a very tight loop in order not to miss any.
+     * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
+     */
+    TinyWireS_stop_check();
+
     if (write_eeprom)
     {
         // Store the offset etc configuration registers to EEPROM
