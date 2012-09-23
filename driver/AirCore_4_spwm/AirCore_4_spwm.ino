@@ -148,9 +148,9 @@ void loop() {
     // Read current time    
     uint16_t pwmTime = TCNT1 % PwmPulseWidth[PwmFrequencySelector];
 
-    uint8_t  portBitsD = 0; //PORTD & ~PortMaskD;
-    uint8_t  portBitsC = 0; //PORTC & ~PortMaskC;
-    uint8_t  portBitsB = 0; //PORTB & ~PortMaskB;
+    uint8_t  portBitsD = PORTD & ~PortMaskD;
+    uint8_t  portBitsC = PORTC & ~PortMaskC;
+    uint8_t  portBitsB = PORTB & ~PortMaskB;
     
     uint8_t  gauge = 0;
 
