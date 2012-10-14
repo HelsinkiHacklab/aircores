@@ -2,7 +2,7 @@
 #include <Wire.h>
 
 // This is ATmega328P specific implementation!
-const uint8_t     I2CSlaveAddress =   0x04;    // The 7-bit address, remember to change this!
+const uint8_t     I2CSlaveAddress =   0x08;    // The 7-bit address, remember to change this!
 
 volatile bool     demoMode = true;             // Starts in Demo mode where timer2 interrupt will automatically increment the gauge values
 
@@ -94,8 +94,6 @@ void setup() {
   // Set I2C    
   Wire.begin(I2CSlaveAddress);                              // Join i2c bus with address #I2C_SLAVE_ADDR
   Wire.onReceive(receiveEvent);                             // Register event handler
-  digitalWrite(A4, HIGH);                                   // Enable the pull-up for SDA
-  digitalWrite(A5, HIGH);                                   // Enable the pull-up for SCL
 
   // Generate initial values with difference phase 
   if (demoMode) {
