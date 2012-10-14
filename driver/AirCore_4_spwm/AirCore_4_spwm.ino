@@ -2,7 +2,7 @@
 #include <Wire.h>
 
 // This is ATmega328P specific implementation!
-enum { BoardSelector = 0 };  // REMEMBER TO CHANGE THIS BEFORE PROGRAMMING!
+enum { BoardSelector = 4 };  // REMEMBER TO CHANGE THIS BEFORE PROGRAMMING!
 const uint8_t     I2CSlaveAddresses[5] = { 0x04, 0x05, 0x06, 0x07, 0x08 };      
 const uint8_t     I2CSlaveAddress = I2CSlaveAddresses[BoardSelector];    
 const bool        I2CMode = true;
@@ -51,10 +51,10 @@ ISR(TIMER1_OVF_vect, ISR_BLOCK) {          		// interrupt service routine that w
 inline uint32_t getTickCount32() {
   cli();
     uint16_t   timer = TCNT1;             // (1a) Read HW timer
-    if (TIFR1 & (1 << TOV1)) {          // INTFLAGS[0] X OVFIF: Overflow/Underflow Interrupt Flag
+    if (TIFR1 & (1 << TOV1)) {            // INTFLAGS[0] X OVFIF: Overflow/Underflow Interrupt Flag
 	// Handle it straight here, instead of the interrupt handler
-  	TIFR1 = (1 << TOV1);;             // Clear the pending interrupt
-  	timer = TCNT1;;                   // (1b) Overflow occurred concurrently, read timer again to get new value after overflow
+  	TIFR1 = (1 << TOV1);              // Clear the pending interrupt
+  	timer = TCNT1;                    // (1b) Overflow occurred concurrently, read timer again to get new value after overflow
 	++tick_counter_31to16;
     }
     
@@ -85,7 +85,7 @@ void setup() {
   cli(); {
     // Set Timer1 to 16 MHz
     TCCR1A = 0;                                             // Normal mode, no PWM
-    TCCR1B = B000;                                          // 16000000 Hz = ~244 Hz overflow
+    TCCR1B = B001;                                          // 16000000 Hz / 1 = ~244 Hz overflow
     TIMSK1 = B1;                                            // Overflow Interrupt Enable
     TCNT1 = 0x0000;                                         // Reset the counter
   } sei();
@@ -125,6 +125,7 @@ void setup() {
  
   // Status ok
   digitalWrite(13, LOW);
+  
 }
 
 // TODO: Check that we have at least two bytes before going on and supposing first one is register...
@@ -157,7 +158,7 @@ inline bool cosPwm(uint16_t pwmTime, uint8_t angle) {
  
 
 void loop() {
-
+  
   cli(); {
     // Read current time    
     uint16_t pwmTime = getTickCount32() & (PwmPulseWidth*2 - 1);
