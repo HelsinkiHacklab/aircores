@@ -106,8 +106,6 @@ void setup() {
     // Set I2C    
     Wire.begin(I2CSlaveAddress);                              // Join i2c bus with address #I2C_SLAVE_ADDR
     Wire.onReceive(receiveEvent);                             // Register event handler
-    digitalWrite(A4, HIGH);                                   // Enable the pull-up for SDA
-    digitalWrite(A5, HIGH);                                   // Enable the pull-up for SCL
   }
   
   // Enable driving pins  
