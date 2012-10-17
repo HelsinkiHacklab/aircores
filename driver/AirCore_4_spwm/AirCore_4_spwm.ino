@@ -183,22 +183,23 @@ void loop() {
       if (pwmValue0 < pwmTime) { PORTC |= B00010000; } else { PORTC &= ~B00010000; }      // Arduino pin A4 (SDA)
       if (pwmValue1 < pwmTime) { PORTC |= B00100000; } else { PORTC &= ~B00100000; }      // Arduino pin A5 (SCL)
     }
-    if (pwmValue2   < pwmTime) { PORTD |= B00000100; } else { PORTD &= ~B00000100; }      // Arduino pin 2
-    if (pwmValue3   < pwmTime) { PORTD |= B00001000; } else { PORTD &= ~B00001000; }      // Arduino pin 3
-    if (pwmValue4   < pwmTime) { PORTD |= B00010000; } else { PORTD &= ~B00010000; }      // Arduino pin 4
-    if (pwmValue5   < pwmTime) { PORTD |= B00100000; } else { PORTD &= ~B00100000; }      // Arduino pin 5
-    if (pwmValue6   < pwmTime) { PORTD |= B01000000; } else { PORTD &= ~B01000000; }      // Arduino pin 6
-    if (pwmValue7   < pwmTime) { PORTD |= B10000000; } else { PORTD &= ~B10000000; }      // Arduino pin 7
-
-    if (pwmValue8   < pwmTime) { PORTB |= B00000001; } else { PORTB &= ~B00000001; }      // Arduino pin 8
-    if (pwmValue9   < pwmTime) { PORTB |= B00000010; } else { PORTB &= ~B00000010; }      // Arduino pin 9
-    if (pwmValue10  < pwmTime) { PORTB |= B00000100; } else { PORTB &= ~B00000100; }      // Arduino pin 10
-    if (pwmValue11  < pwmTime) { PORTB |= B00001000; } else { PORTB &= ~B00001000; }      // Arduino pin 11
+    if (pwmValue2  < pwmTime) { PORTD |= B00000100; } else { PORTD &= ~B00000100; }       // Arduino pin 2
+    if (pwmValue3  < pwmTime) { PORTD |= B00001000; } else { PORTD &= ~B00001000; }       // Arduino pin 3
+    if (pwmValue4  < pwmTime) { PORTD |= B00010000; } else { PORTD &= ~B00010000; }       // Arduino pin 4
+    if (pwmValue5  < pwmTime) { PORTD |= B00100000; } else { PORTD &= ~B00100000; }       // Arduino pin 5
+    if (pwmValue6  < pwmTime) { PORTD |= B01000000; } else { PORTD &= ~B01000000; }       // Arduino pin 6
+    if (pwmValue7  < pwmTime) { PORTD |= B10000000; } else { PORTD &= ~B10000000; }       // Arduino pin 7
     
-    if (pwmValue12  < pwmTime) { PORTC |= B00000001; } else { PORTC &= ~B00000001; }      // Arduino pin A0
-    if (pwmValue13  < pwmTime) { PORTC |= B00000010; } else { PORTC &= ~B00000010; }      // Arduino pin A1
-    if (pwmValue14  < pwmTime) { PORTC |= B00000100; } else { PORTC &= ~B00000100; }      // Arduino pin A2
-    if (pwmValue15  < pwmTime) { PORTC |= B00001000; } else { PORTC &= ~B00001000; }      // Arduino pin A3
+    if (pwmValue8  < pwmTime) { PORTC |= B00000001; } else { PORTC &= ~B00000001; }       // Arduino pin A0
+    if (pwmValue9  < pwmTime) { PORTC |= B00000010; } else { PORTC &= ~B00000010; }       // Arduino pin A1
+    if (pwmValue10 < pwmTime) { PORTC |= B00000100; } else { PORTC &= ~B00000100; }       // Arduino pin A2
+    if (pwmValue11 < pwmTime) { PORTC |= B00001000; } else { PORTC &= ~B00001000; }       // Arduino pin A3
+
+    if (pwmValue12 < pwmTime) { PORTB |= B00000001; } else { PORTB &= ~B00000001; }       // Arduino pin 8
+    if (pwmValue13 < pwmTime) { PORTB |= B00000010; } else { PORTB &= ~B00000010; }       // Arduino pin 9
+    if (pwmValue14 < pwmTime) { PORTB |= B00000100; } else { PORTB &= ~B00000100; }       // Arduino pin 10
+    if (pwmValue15 < pwmTime) { PORTB |= B00001000; } else { PORTB &= ~B00001000; }       // Arduino pin 11
+
   sei();
 }
 
