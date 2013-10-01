@@ -30,7 +30,7 @@ module capsule() {
     }
 }
 
-module wing() {
+module wing_render() {
     wing_x = 1;
     wing_y = 11;
     wing_z = 11;
@@ -64,7 +64,12 @@ module wing() {
         }
     //}
 }
-//wing();
+//wing_render();
+
+module wing()
+{
+    import("wing_round.stl");
+}
 
 module wing_donut(wing_x, wing_y, wing_z, cutout_r)
 {
