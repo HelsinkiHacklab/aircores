@@ -1,4 +1,4 @@
-$fa=0.5;
+$fa=0.7;
 $fs=0.1;
 
 magnet_h_0 = 6.37/2;
@@ -35,22 +35,34 @@ module wing() {
     wing_y = 11;
     wing_z = 11;
     cutout_r = 6.1;
-    /*
     render(convexity = 10)
     {
-    */
         difference() {
             translate ([-1*wing_x/2, 0, 0]) {
                 cube(size = [wing_x, wing_y, wing_z]);
+            }
+            translate([0,wing_y+0.1,wing_z+cutout_r-wing_x])
+            {
+                rotate([90,90,0])
+                {
+                    difference()
+                    {
+                        cylinder(h=wing_y+0.2, r = cutout_r, center = false);
+                        translate([cutout_r, 0, -0.1])
+                        {
+                            cylinder(h=wing_y+0.4, r = wing_x, center = false);
+                        }
+                    }
+                }
             }
             translate([0,0,wing_z+cutout_r/2-wing_x])
             {
                 wing_donut(wing_x, wing_y, wing_z, cutout_r);
             }
         }
-    //}
+    }
 }
-wing();
+//wing();
 
 module wing_donut(wing_x, wing_y, wing_z, cutout_r)
 {
@@ -129,7 +141,7 @@ module main() {
 
 }
 
-//main();
+main();
 
 
 
