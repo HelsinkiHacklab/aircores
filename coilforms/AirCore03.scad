@@ -1,5 +1,5 @@
-
-$fs = 0.1;
+$fa=0.1;
+$fs=0.05;
 
 magnet_h_0 = 6.37/2;
 magnet_r_0 = 6.33/2;
@@ -41,7 +41,7 @@ module wing() {
         } }
     }
 }
-
+wing();
 
 module magneetin_kolo() {
     union() {
@@ -91,7 +91,7 @@ module main() {
 
 }
 
-main();
+//main();
 
 
 
