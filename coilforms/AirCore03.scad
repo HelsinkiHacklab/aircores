@@ -1,5 +1,5 @@
-$fa=0.1;
-$fs=0.05;
+$fa=0.5;
+$fs=0.1;
 
 magnet_h_0 = 6.37/2;
 magnet_r_0 = 6.33/2;
@@ -35,51 +35,29 @@ module wing() {
     wing_y = 11;
     wing_z = 11;
     cutout_r = 6.1;
-    difference() {
-        translate ([-1*wing_x/2, 0, 0]) {
-            cube(size = [wing_x, wing_y, wing_z]);
-        }
-        translate([0,0,0])
-        {
-            rotate_extrude(convexity = 10)
+    /*
+    render(convexity = 10)
+    {
+    */
+        difference() {
+            translate ([-1*wing_x/2, 0, 0]) {
+                cube(size = [wing_x, wing_y, wing_z]);
+            }
+            translate([0,0,wing_z+cutout_r/2-wing_x])
             {
-                translate([0,0,0])
-                {
-                    difference()
-                    {
-                        cylinder(h = wing_x, r = cutout_r, center = false);
-                        translate([cutout_r, 0, 0])
-                        {
-                            cylinder(h = wing_x, r = wing_x, center = false);
-                        }
-                    }
-                }
+                wing_donut(wing_x, wing_y, wing_z, cutout_r);
             }
         }
-        /*
-        translate ([0, 4, 14.7]) { rotate ([0, 90, 0]) {
-            cylinder(h = 5, r = 6.1, center = true);
-        } }
-        */
-    }
+    //}
 }
-//wing();
-module foo()
-{
-    wing_x = 1;
-    wing_y = 11;
-    wing_z = 11;
-    cutout_r = 6.1;
+wing();
 
-/*
-rotate_extrude(convexity = 10)
+module wing_donut(wing_x, wing_y, wing_z, cutout_r)
 {
-    translate([2, 0, 0])
+    /*
+    render(convexity = 10)
     {
-        circle(r = 1);
-    }
-}
-*/
+    */
         translate([0,0,cutout_r*2])
         {
             rotate([0,90,0])
@@ -100,9 +78,8 @@ rotate_extrude(convexity = 10)
                 }
             }
         }
+    //}
 }
-foo();
-
 
 module magneetin_kolo() {
     union() {
