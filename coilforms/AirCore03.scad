@@ -35,8 +35,10 @@ module wing() {
     wing_y = 11;
     wing_z = 11;
     cutout_r = 6.1;
+    /*
     render(convexity = 10)
     {
+    */
         difference() {
             translate ([-1*wing_x/2, 0, 0]) {
                 cube(size = [wing_x, wing_y, wing_z]);
@@ -60,7 +62,7 @@ module wing() {
                 wing_donut(wing_x, wing_y, wing_z, cutout_r);
             }
         }
-    }
+    //}
 }
 //wing();
 
