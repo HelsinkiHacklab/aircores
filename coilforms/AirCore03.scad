@@ -31,17 +31,78 @@ module capsule() {
 }
 
 module wing() {
-
+    wing_x = 1;
+    wing_y = 11;
+    wing_z = 11;
+    cutout_r = 6.1;
     difference() {
-        translate ([-0.5, 0, 0]) {
-            cube(size = [1, 11, 11]);
+        translate ([-1*wing_x/2, 0, 0]) {
+            cube(size = [wing_x, wing_y, wing_z]);
         }
+        translate([0,0,0])
+        {
+            rotate_extrude(convexity = 10)
+            {
+                translate([0,0,0])
+                {
+                    difference()
+                    {
+                        cylinder(h = wing_x, r = cutout_r, center = false);
+                        translate([cutout_r, 0, 0])
+                        {
+                            cylinder(h = wing_x, r = wing_x, center = false);
+                        }
+                    }
+                }
+            }
+        }
+        /*
         translate ([0, 4, 14.7]) { rotate ([0, 90, 0]) {
             cylinder(h = 5, r = 6.1, center = true);
         } }
+        */
     }
 }
-wing();
+//wing();
+module foo()
+{
+    wing_x = 1;
+    wing_y = 11;
+    wing_z = 11;
+    cutout_r = 6.1;
+
+/*
+rotate_extrude(convexity = 10)
+{
+    translate([2, 0, 0])
+    {
+        circle(r = 1);
+    }
+}
+*/
+        translate([0,0,cutout_r*2])
+        {
+            rotate([0,90,0])
+            {
+                rotate_extrude(convexity = 10)
+                {
+                    translate([cutout_r*2,0,0])
+                    {
+                        difference()
+                        {
+                            circle(r = cutout_r, center = false);
+                            translate([cutout_r, 0, 0])
+                            {
+                                circle(r = wing_x, center = false);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
+foo();
+
 
 module magneetin_kolo() {
     union() {
