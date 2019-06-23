@@ -121,10 +121,11 @@ void setup() {
   
 }
 
-// TODO: Check that we have at least two bytes before going on and supposing first one is register...
-void receiveEvent(int howMany) {
-    if (howMany < 2) {
-        return;  // We're only interested when we know we can suppose the first byte is register address
+void receiveEvent(int howMany)
+{
+    if (howMany < 2)
+    {
+        goto FAILCLEAN;
     }
 
     demoMode = false;
@@ -132,11 +133,22 @@ void receiveEvent(int howMany) {
     
     uint8_t reg_addr = Wire.read();
     uint8_t max_reg = reg_addr + howMany - 1;
-    
-    for (uint8_t i = reg_addr; i < max_reg; ++i) {
-        if (i < GaugeCount) gaugeValue[i] = Wire.read();
+    if (reg_addr >= GaugeCount || max_reg > GaugeCount)
+    {
+        goto FAILCLEAN;
     }
     
+    for (uint8_t i = reg_addr; i < max_reg; ++i)
+    {
+        gaugeValue[i] = Wire.read();
+    }
+    return;
+
+FAILCLEAN:
+    while(Wire.available())
+    {
+        Wire.read();
+    }
 }
 
 
@@ -202,4 +214,3 @@ void loop() {
 
   sei();
 }
-
